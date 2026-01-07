@@ -1,50 +1,80 @@
-# Vite & HeroUI Template
+# HeroUI Lexical Editor
 
-This is a template for creating applications using Vite and HeroUI (v2).
+A premium, modular rich-text editor integration built with [Lexical](https://lexical.dev/) and [HeroUI](https://heroui.com/).
 
-[Try it on CodeSandbox](https://githubbox.com/heroui-inc/vite-template)
+Originally built to bridge the gap between **PayloadCMS** (which uses Lexical) and frontend applications requiring a consistent, beautiful UI. This is not a restrictive library, but a collection of modular components you can copy, paste, and customize.
 
-## Technologies Used
+## ✨ Features
 
-- [Vite](https://vitejs.dev/guide/)
-- [HeroUI](https://heroui.com)
-- [Tailwind CSS](https://tailwindcss.com)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org)
-- [Framer Motion](https://www.framer.com/motion)
+- **PayloadCMS Ready**: Fully compatible with Lexical's state and JSON format.
+- **HeroUI Native**: All UI elements (Toolbars, Sliders, Color Pickers, Dropdowns) are built using HeroUI primitives.
+- **Highly Modular**: Pick and choose the plugins you need (Code, Links, Lists, Tables, etc.).
+- **Accessible**: Leverages HeroUI and React Aria for a fully accessible editing experience.
+- **Customizable**: Simple component-driven architecture—easily add your own custom nodes or toolbar actions.
 
-## How to Use
+## 🚀 Live Demo
 
-To clone the project, run the following command:
+Check out the interactive demo and documentation:
+**[https://dan6erbond.github.io/heroui-lexical-editor/](https://dan6erbond.github.io/heroui-lexical-editor/)**
 
+## 📦 Installation
+
+This project is designed to be integrated into your own HeroUI/Tailwind project.
+
+1. **Install Dependencies**:
 ```bash
-git clone https://github.com/heroui-inc/vite-template.git
+pnpm add lexical @lexical/react @lexical/selection @lexical/utils @lexical/rich-text @lexical/list @lexical/link @lexical/table @lexical/code @lexical/markdown @lexical/text @lexical/file @lexical/hashtag @lexical/overflow lodash lucide-react
 ```
 
-### Install dependencies
+2. **Copy Components**:
+Grab the `src/components/editor` and `src/components/ui` folders and move them into your project.
+3. **Usage**:
+```tsx
+import { Editor } from '@/components/editor';
 
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
-
-```bash
-npm install
+export default function App() {
+  return (
+    <Editor
+      onSerializedChange={(json) => console.log("Lexical JSON:", json)}
+    />
+  );
+}
 ```
 
-### Run the development server
+## 🛠️ Configuration
 
-```bash
-npm run dev
+### Frameworks (Next.js / SSR)
+
+If you are using an SSR framework, remember to disable SSR for the typeahead/menu plugins within the `editor/plugins/` directory:
+
+```tsx
+const LexicalTypeaheadMenuPlugin = dynamic(
+  () => import("@lexical/react/LexicalTypeaheadMenuPlugin"),
+  { ssr: false }
+);
+
 ```
 
-### Setup pnpm (optional)
+### Tailwind CSS
 
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
+Ensure your `tailwind.config.js` is watching the editor components:
 
-```bash
-public-hoist-pattern[]=*@heroui/*
+```js
+content: [
+  // ...
+  "./src/components/**/*.{js,ts,jsx,tsx}",
+],
+
 ```
 
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
+## 🤝 Contributing
 
-## License
+Contributions are welcome! Whether it's a bug fix, a new plugin integration, or a styling improvement, feel free to open a PR.
 
-Licensed under the [MIT license](https://github.com/heroui-inc/vite-template/blob/main/LICENSE).
+## 📄 License
+
+This project is licensed under the [MIT License](https://www.google.com/search?q=LICENSE).
+
+---
+
+Created with ❤️ by [dan6erbond](https://github.com/dan6erbond)
