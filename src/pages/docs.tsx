@@ -23,6 +23,7 @@ export default function DocsPage() {
     '@lexical/hashtag',
     '@lexical/overflow',
     'lodash',
+    '@types/lodash',
     'lucide-react',
   ].join(' ');
 
