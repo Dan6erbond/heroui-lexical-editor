@@ -29,7 +29,6 @@
   },
   "include": [
     "src",
-    "umami.ts"
   ],
   "references": [
     {
