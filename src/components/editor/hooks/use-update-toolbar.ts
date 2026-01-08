@@ -13,19 +13,21 @@ export function useUpdateToolbarHandler(callback: (selection: BaseSelection) => 
       SELECTION_CHANGE_COMMAND,
       () => {
         const selection = $getSelection();
+
         if (selection) {
           callback(selection);
         }
+
         return false;
       },
       COMMAND_PRIORITY_CRITICAL,
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editor, callback]);
 
   useEffect(() => {
     activeEditor.getEditorState().read(() => {
       const selection = $getSelection();
+
       if (selection) {
         callback(selection);
       }

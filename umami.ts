@@ -1,8 +1,8 @@
-import type { Plugin } from "vite";
+import type { Plugin } from 'vite';
 
 export function umamiAnalyticsPlugin(): Plugin {
   return {
-    name: "umami-analytics",
+    name: 'umami-analytics',
 
     transformIndexHtml(_html, ctx) {
       // Vite dev server → skip (equivalent to NODE_ENV === 'development')
@@ -12,13 +12,13 @@ export function umamiAnalyticsPlugin(): Plugin {
 
       return [
         {
-          tag: "script",
+          tag: 'script',
           attrs: {
-            src: "https://cloud.umami.is/script.js",
+            src: 'https://cloud.umami.is/script.js',
             defer: true,
-            "data-website-id": "a8815709-2029-4757-8ed5-73d504673629",
+            'data-website-id': 'a8815709-2029-4757-8ed5-73d504673629',
           },
-          injectTo: "head",
+          injectTo: 'head',
         },
       ];
     },

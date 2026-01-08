@@ -1,10 +1,7 @@
-"use client";
+'use client';
 
-import { $getSelection, $isRangeSelection, BaseSelection } from "lexical";
-import {
-  $getSelectionStyleValueForProperty,
-  $patchStyleText,
-} from "@lexical/selection";
+import { $getSelection, $isRangeSelection, BaseSelection } from 'lexical';
+import { $getSelectionStyleValueForProperty, $patchStyleText } from '@lexical/selection';
 import {
   ColorPickerRoot as ColorPicker,
   ColorPickerAlphaSlider,
@@ -16,22 +13,20 @@ import {
   ColorPickerInput,
   ColorPickerTrigger,
 } from '@/components/ui/color-picker';
-import { useCallback, useState } from "react";
+import { useCallback, useState } from 'react';
 
-import { BaselineIcon } from "lucide-react";
-import { Tooltip } from "@heroui/react";
-import { useToolbarContext } from "../../context/toolbar";
-import { useUpdateToolbarHandler } from "../../hooks/use-update-toolbar";
+import { BaselineIcon } from 'lucide-react';
+import { Tooltip } from '@heroui/react';
+import { useToolbarContext } from '../../context/toolbar';
+import { useUpdateToolbarHandler } from '../../hooks/use-update-toolbar';
 
 export function FontColorToolbarPlugin() {
   const { activeEditor } = useToolbarContext();
-  const [fontColor, setFontColor] = useState("#000");
+  const [fontColor, setFontColor] = useState('#000');
 
   const $updateToolbar = (selection: BaseSelection) => {
     if ($isRangeSelection(selection)) {
-      setFontColor(
-        $getSelectionStyleValueForProperty(selection, "color", "#000")
-      );
+      setFontColor($getSelectionStyleValueForProperty(selection, 'color', '#000'));
     }
   };
 
@@ -46,17 +41,17 @@ export function FontColorToolbarPlugin() {
             $patchStyleText(selection, styles);
           }
         },
-        { tag: "historic" }
+        { tag: 'historic' },
       );
     },
-    [activeEditor]
+    [activeEditor],
   );
 
   const onFontColorSelect = useCallback(
     (value: string) => {
       applyStyleText({ color: value });
     },
-    [applyStyleText]
+    [applyStyleText],
   );
 
   const onOpenChange = useCallback(
@@ -66,24 +61,13 @@ export function FontColorToolbarPlugin() {
         activeEditor.focus();
       }
     },
-    [activeEditor]
+    [activeEditor],
   );
 
   return (
-    <ColorPicker
-      defaultFormat="hex"
-      value={fontColor}
-      onValueChange={onFontColorSelect}
-      onOpenChange={onOpenChange}
-    >
+    <ColorPicker defaultFormat="hex" value={fontColor} onValueChange={onFontColorSelect} onOpenChange={onOpenChange}>
       <Tooltip content="Text Color" placement="top" showArrow delay={500}>
-        <ColorPickerTrigger
-          isIconOnly
-          variant="light"
-          size="sm"
-          className="min-w-8 h-8"
-          aria-label="Text Color"
-        >
+        <ColorPickerTrigger isIconOnly variant="light" size="sm" className="min-w-8 h-8" aria-label="Text Color">
           <div className="relative">
             <BaselineIcon className="size-4 text-default-600" />
             <div
